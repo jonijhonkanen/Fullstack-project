@@ -1,0 +1,19 @@
+{
+  "name": "fullstack-project",
+  "version": "1.0.0",
+  "description": "Project work for the TAMK Course 4A00EZ62-3003",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonijhonkanen/Fullstack-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonijhonkanen/Fullstack-project/issues"
+  },
+  "homepage": "https://github.com/jonijhonkanen/Fullstack-project#readme"
+}
