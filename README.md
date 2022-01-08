@@ -44,3 +44,6 @@ The project is developed with the following:
 ### Installation
 
 --TO BE UPDATED--
+
+Note: the current goal is to have this application in Heroku,
+so that users can test the application without complex installation process.
