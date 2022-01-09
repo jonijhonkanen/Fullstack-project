@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/jonijhonkanen/Fullstack-project/issues"
   },
-  "homepage": "https://github.com/jonijhonkanen/Fullstack-project#readme"
+  "homepage": "https://github.com/jonijhonkanen/Fullstack-project#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "jsonschema": "^1.4.0",
+    "mysql": "^2.18.1"
+  }
 }
