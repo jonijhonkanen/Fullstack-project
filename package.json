@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jonijhonkanen/Fullstack-project#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.2",
     "jsonschema": "^1.4.0",
     "mysql": "^2.18.1"
