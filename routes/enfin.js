@@ -1,7 +1,5 @@
 const express = require('express');
-const router = express.Router();
-const Validator = require('jsonschema').Validator;
-const v = new Validator();
+//const router = express.Router();
 
 //Mysql
 const mysql = require('mysql');
@@ -18,34 +16,59 @@ var pool = mysql.createPool({
   database: process.env.DB_DB,
 });
 
-const enfinSchema = {
-  type: 'object',
-  required: ['english', 'finnish'],
-  maxProperties: 3,
-  properties: {
-    english: {
-      type: 'string',
-    },
-    finnish: {
-      type: 'string',
-    },
-    tag: {
-      type: 'string',
-    },
-  },
-};
+//Send all word pairs from database (mainly for debug purposes)
+function findAll() {
+  return new Promise((resolve, reject) => {
+    pool.getConnection((err, connection) => {
+      connection.query('SELECT * FROM en_fin', (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+          connection.release();
+        }
+      });
+    });
+  });
+}
 
-router.get('/', (req, res) => {
+//Save a new word pair into the database
+function save(wordpair) {
+  return new Promise((resolve, reject) => {
+    //Add new body to database
+    pool.getConnection((err, connection) => {
+      connection.query('INSERT INTO en_fin SET ?', wordpair, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(wordpair);
+          connection.release();
+        }
+      });
+    });
+  });
+}
+
+/*
+router.get('/en_fin/all', (req, res) => {
+  console.log('Retrieve all words');
   pool.getConnection((err, connection) => {
-    connection.query('SELECT * FROM en_fin', (err, enfinWords) => {
+    connection.query('SELECT * FROM en_fin', (err, results) => {
       if (err) {
         res.status(500).send('Server error');
       } else {
-        res.status(200).send(enfinWords);
+        res.status(200).send(results);
         connection.release();
       }
     });
   });
 });
+*/
 
-module.exports = router;
+//module.exports = router;
+let connectionFunctions = {
+  findAll: findAll,
+  save: save,
+};
+
+module.exports = connectionFunctions;
