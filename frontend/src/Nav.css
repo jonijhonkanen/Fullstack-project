@@ -1,0 +1,16 @@
+.nav_bar {
+  box-sizing: border-box;
+  background-color: aqua;
+  min-width: 100vw;
+  min-height: 5vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.nav_bar a {
+  box-sizing: border-box;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid;
+}
