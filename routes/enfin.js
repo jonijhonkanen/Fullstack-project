@@ -1,4 +1,4 @@
-const express = require('express');
+//const express = require('express');
 //const router = express.Router();
 
 //Mysql
@@ -49,6 +49,28 @@ function save(wordpair) {
   });
 }
 
+//Delete word pair from database
+function deleteWords(word) {
+  return new Promise((resolve, reject) => {
+    //console.log(word.english);
+    let engWord = word.english;
+    //Delete from database
+    pool.getConnection((err, connection) => {
+      connection.query(
+        'DELETE FROM en_fin WHERE english = ' + pool.escape(engWord),
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+            connection.release();
+          }
+        }
+      );
+    });
+  });
+}
+
 /*
 router.get('/en_fin/all', (req, res) => {
   console.log('Retrieve all words');
@@ -69,6 +91,7 @@ router.get('/en_fin/all', (req, res) => {
 let connectionFunctions = {
   findAll: findAll,
   save: save,
+  deleteWords: deleteWords,
 };
 
 module.exports = connectionFunctions;

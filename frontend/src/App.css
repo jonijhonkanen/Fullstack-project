@@ -39,6 +39,6 @@
   margin-top: 30px;
   border: 2px solid;
   border-radius: 15px;
-  max-height: 6vh;
-  max-width: 10vw;
+  height: 60px;
+  width: 100px;
 }

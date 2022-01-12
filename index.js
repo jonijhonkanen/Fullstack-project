@@ -44,6 +44,18 @@ const enfinSchema = {
   },
 };
 
+//For delete validation
+const enfinDelete = {
+  type: 'object',
+  required: ['english'],
+  maxProperties: 1,
+  properties: {
+    english: {
+      type: 'string',
+    },
+  },
+};
+
 //Use try-catch for this
 //Retrieve all words
 app.get('/all', async (req, res) => {
@@ -68,6 +80,26 @@ app.post('/addwords/', async (req, res) => {
       .save(wordpair)
       .then(() => {
         res.status(201).send();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+});
+
+app.delete('/deletewords/', async (req, res) => {
+  console.log('Deleting word');
+  let delWord = req.body;
+  let delVal = v.validate(delWord, enfinDelete);
+  if (delVal.errors.length > 0) {
+    //'Attribute validation failure'
+    res.status(400).send(delVal.errors);
+  } else {
+    //console.log(delWord);
+    lang_db
+      .deleteWords(delWord)
+      .then(() => {
+        res.status(204).send();
       })
       .catch((error) => {
         console.log(error);
