@@ -41,7 +41,7 @@ function save(wordpair) {
         if (err) {
           reject(err);
         } else {
-          resolve(wordpair);
+          resolve();
           connection.release();
         }
       });
