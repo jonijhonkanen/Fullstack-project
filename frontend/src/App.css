@@ -23,3 +23,22 @@
 .content {
   background-color: #282c34;
 }
+
+.message_field {
+  margin: auto;
+  background-color: rgb(173, 173, 173);
+  border: 2px solid;
+  border-radius: 15px;
+  min-height: 3vh;
+  min-width: 5vw;
+}
+
+.load-all {
+  margin: auto;
+  text-align: center;
+  margin-top: 30px;
+  border: 2px solid;
+  border-radius: 15px;
+  max-height: 6vh;
+  max-width: 10vw;
+}
