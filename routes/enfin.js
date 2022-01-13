@@ -71,6 +71,43 @@ function deleteWords(word) {
   });
 }
 
+//Update word of word pair
+//Takes an identifier (word) and the actual change
+function updateWords(update) {
+  return new Promise((resolve, reject) => {
+    //console.log(update);
+    let language = update.language;
+    let original = update.original;
+    let updateTo = update.update;
+    let sql = 'UPDATE en_fin SET ?? = ? WHERE ?? = ?';
+    console.log(language);
+    console.log(original);
+    console.log(updateTo);
+
+    //'UPDATE en_fin SET ? WHERE english OR finnish = ' + pool.escape(original);
+
+    //Prepare query (includes escaping query)
+    let inserts = [language, updateTo, language, original];
+    sql = mysql.format(sql, inserts);
+
+    //FAILED
+    //"UPDATE en_fin SET 'english' TO 'buss' WHERE english OR finnish = 'bus'"
+    //"UPDATE en_fin SET `english` = 'buss' WHERE `bus` = 'english'"
+
+    //Update in database
+    pool.getConnection((err, connection) => {
+      connection.query(sql, [language, original, updateTo], (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+          connection.release();
+        }
+      });
+    });
+  });
+}
+
 /*
 router.get('/en_fin/all', (req, res) => {
   console.log('Retrieve all words');
@@ -92,6 +129,7 @@ let connectionFunctions = {
   findAll: findAll,
   save: save,
   deleteWords: deleteWords,
+  updateWords: updateWords,
 };
 
 module.exports = connectionFunctions;
