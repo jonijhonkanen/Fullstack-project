@@ -64,6 +64,8 @@ function AdminView() {
           setMessage('Words added successfully!');
         }
         setIsPending(false);
+        setEnglishWord('');
+        setFinnishWord('');
       })
       .catch((error) => {
         setIsPending(false);
@@ -117,8 +119,9 @@ function AdminView() {
         if (res.ok) {
           setMessage('Words deleted successfully!');
         }
-        console.log(res.status);
+        //console.log(res.status);
         setIsPending(false);
+        setDeleteWord('');
       })
       .catch((error) => {
         setIsPending(false);
@@ -149,8 +152,10 @@ function AdminView() {
         if (res.ok) {
           setMessage('Words updated successfully!');
         }
-        console.log(res.status);
+        //console.log(res.status);
         setIsPending(false);
+        setUpdateWord('');
+        setOriginalWord('');
       })
       .catch((error) => {
         setIsPending(false);
@@ -160,9 +165,7 @@ function AdminView() {
 
   //For updating the word (language selection)
   function handleLang(value) {
-    //console.log(`Old language: ${updateLang}`);
     setUpdateLang(value);
-    //console.log(`Current language: ${updateLang}`);
   }
 
   return (
