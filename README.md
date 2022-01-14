@@ -19,10 +19,6 @@ related messages and creation of reasonable user experience.
 The current development plan is to develope and update this project
 until 14 of January 2022. Any further development is unsure.
 
-### Code style
-
---TO BE UPDATED--
-
 ### Screenshots
 
 --TO BE ADDED--
@@ -35,15 +31,34 @@ The project is developed with the following:
 
 - React (for frontend)
 
-- modules including: express, mysql, cors, json-schema
+- modules including: express, mysql, cors, json-schema, react-router (for frontend)
 
 ### Features
 
---TO BE UPDATED--
+Admin:
+
+- Can add, delete and update word pairs in a simple language database.
+- Can view current data via browser's consol.
+
+Student:
+
+- Load and answer a short word quiz based on the words in the database.
+- View results after quiz is complete.
+- Retry the current quiz.
 
 ### Installation
 
---TO BE UPDATED--
+NOTE!
+This app would require credentials for TAMK database.
+Therefore its usage might be impossible for others than developers at the moment.
 
-Note: the current goal is to have this application in Heroku,
-so that users can test the application without complex installation process.
+Basic instructions:
+
+- Copy files into a wanted location.
+- run npm install to acquire required modules.
+- use node index.js to run backend.
+- use localhost:8080 on browser url to view the app.
+
+### Link to Screencast
+
+https://youtu.be/Ra5GvH9zNA0
