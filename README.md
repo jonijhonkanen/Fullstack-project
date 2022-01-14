@@ -21,7 +21,8 @@ until 14 of January 2022. Any further development is unsure.
 
 ### Screenshots
 
---TO BE ADDED--
+./screenshots/screenshot1.png
+./screenshots/screenshot2.png
 
 ### Frameworks and modules
 
