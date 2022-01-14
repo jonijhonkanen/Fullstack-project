@@ -197,11 +197,13 @@ function StudentView() {
         {isPending && <div>Loading...</div>}
       </div>
       {/*Load words for quiz*/}
-      {!quizWords ? (
+      {!quizWords && (
         <div className="load-quiz">
           <button onClick={fetchAll}>{buttonText}</button>
         </div>
-      ) : (
+      )}
+
+      {quizWords && !quizComplete && (
         <div className="start-quiz">
           <button onClick={handleStart}>{buttonText}</button>
         </div>
