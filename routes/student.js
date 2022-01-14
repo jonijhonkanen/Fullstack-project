@@ -59,9 +59,13 @@ const updateSchema = {
 
 //Get all words from the database
 student.get('/all', async (req, res) => {
-  console.log('Retrieve all words');
-  let data = await lang_db.findAll();
-  res.status(200).send(data);
+  //console.log('Retrieve all words');
+  try {
+    let data = await lang_db.findAll();
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 module.exports = student;

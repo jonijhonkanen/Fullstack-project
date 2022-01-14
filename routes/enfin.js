@@ -77,19 +77,13 @@ function updateWords(update) {
     let original = update.original;
     let updateTo = update.update;
     let sql = 'UPDATE en_fin SET ?? = ? WHERE ?? = ?';
-    console.log(language);
-    console.log(original);
-    console.log(updateTo);
-
-    //'UPDATE en_fin SET ? WHERE english OR finnish = ' + pool.escape(original);
+    //console.log(language);
+    //console.log(original);
+    //console.log(updateTo);
 
     //Prepare query (includes escaping query)
     let inserts = [language, updateTo, language, original];
     sql = mysql.format(sql, inserts);
-
-    //FAILED
-    //"UPDATE en_fin SET 'english' TO 'buss' WHERE english OR finnish = 'bus'"
-    //"UPDATE en_fin SET `english` = 'buss' WHERE `bus` = 'english'"
 
     //Update in database
     pool.getConnection((err, connection) => {
@@ -104,22 +98,6 @@ function updateWords(update) {
     });
   });
 }
-
-/*
-router.get('/en_fin/all', (req, res) => {
-  console.log('Retrieve all words');
-  pool.getConnection((err, connection) => {
-    connection.query('SELECT * FROM en_fin', (err, results) => {
-      if (err) {
-        res.status(500).send('Server error');
-      } else {
-        res.status(200).send(results);
-        connection.release();
-      }
-    });
-  });
-});
-*/
 
 //module.exports = router;
 let connectionFunctions = {

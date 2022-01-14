@@ -57,40 +57,41 @@ const updateSchema = {
   },
 };
 
-//Use try-catch for this
 //Retrieve all words
 admin.get('/all', async (req, res) => {
-  console.log('Retrieve all words');
-  let data = await lang_db.findAll();
-  res.status(200).send(data);
+  //console.log('Retrieve all words');
+  try {
+    let data = await lang_db.findAll();
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 //Add a new word pair
 admin.post('/addwords/', async (req, res) => {
-  console.log('Adding words');
+  //console.log('Adding words');
   let wordpair = req.body;
   let pairVal = v.validate(wordpair, enfinSchema);
   if (pairVal.errors.length > 0) {
     //'Attribute validation failure'
     res.status(400).send(pairVal.errors);
   } else {
-    //console.log(wordpair);
-    //let data = await lang_db.save(wordpair);
-    //res.status(201).send(data)
     lang_db
       .save(wordpair)
       .then(() => {
         res.status(201).send();
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
+        res.status(500).send(error);
       });
   }
 });
 
 //Remove a word pair from database
 admin.delete('/deletewords/', async (req, res) => {
-  console.log('Deleting word');
+  //console.log('Deleting word');
   let delWord = req.body;
   let delVal = v.validate(delWord, enfinDelete);
   if (delVal.errors.length > 0) {
@@ -104,14 +105,15 @@ admin.delete('/deletewords/', async (req, res) => {
         res.status(204).send();
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
+        res.status(500).send(error);
       });
   }
 });
 
 //Make an update to a word of a word pair
 admin.put('/updatewords/', async (req, res) => {
-  console.log('Updating word');
+  //console.log('Updating word');
   let wordUpdate = req.body;
   let updateVal = v.validate(wordUpdate, updateSchema);
   if (updateVal.errors.length > 0) {
@@ -128,7 +130,8 @@ admin.put('/updatewords/', async (req, res) => {
         res.status(201).send();
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
+        res.status(500).send(error);
       });
   }
 });

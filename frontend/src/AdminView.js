@@ -40,15 +40,11 @@ function AdminView() {
       setMessage('');
       setIsPending(false);
     }
-    //let hr = await fetch('/all');
-    //let data = await hr.json();
-    //Test if query works
-    //console.log(data);
   }
 
   //Send the words
   async function sendWords(newWords) {
-    console.log(newWords);
+    //console.log(newWords);
 
     setIsPending(true);
     fetch(`/addwords/`, {
@@ -71,17 +67,6 @@ function AdminView() {
         setIsPending(false);
         setMessage(error);
       });
-
-    /*
-    let hr = await fetch(`/addwords/`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newWords),
-    });
-    */
   }
 
   //For adding words
