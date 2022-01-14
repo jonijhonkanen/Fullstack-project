@@ -1,48 +1,72 @@
-//For express
+//Routing for student url
 const express = require('express');
-const app = express();
+const admin = express.Router();
 
-//For CORS
-var cors = require('cors');
-app.use(cors());
+//Import functions for querys
+const lang_db = require('./enfin.js');
 
-//For sql
-const mysql = require('mysql');
+//For request validation
+const Validator = require('jsonschema').Validator;
+const v = new Validator();
 
-//For database routing (contains routing and querys for en-fin database)
-const admin = require('./routes/admin.js');
-const student = require('./routes/student.js');
+//For validation
+const enfinSchema = {
+  type: 'object',
+  required: ['english', 'finnish'],
+  minProperties: 2,
+  maxProperties: 3,
+  properties: {
+    english: {
+      type: 'string',
+    },
+    finnish: {
+      type: 'string',
+    },
+    tag: {
+      type: 'string',
+    },
+  },
+};
 
-//Use of frontend (Admin as homepage)
-app.use(express.static('frontend/build'));
+//For delete validation
+const enfinDelete = {
+  type: 'object',
+  required: ['english'],
+  maxProperties: 1,
+  properties: {
+    english: {
+      type: 'string',
+    },
+  },
+};
 
-//Port definition
-const port = process.env.PORT || 8080;
-
-//Use json
-app.use(express.json());
-
-//Routing files (one for each view/page)
-app.use('/', admin);
-app.use('/student', student);
-
-//Show online status for developer
-const server = app.listen(port, () => {
-  console.log(`Listening on port ${server.address().port}`);
-});
+//For update validation
+const updateSchema = {
+  type: 'object',
+  maxProperties: 3,
+  properties: {
+    language: {
+      type: 'string',
+    },
+    original: {
+      type: 'string',
+    },
+    update: {
+      type: 'string',
+    },
+  },
+};
 
 //Use try-catch for this
 //Retrieve all words
-
-/*
-app.get('/all', async (req, res) => {
+admin.get('/all', async (req, res) => {
   console.log('Retrieve all words');
   let data = await lang_db.findAll();
   res.status(200).send(data);
 });
 
 //Add a new word pair
-app.post('/addwords/', async (req, res) => {
+admin.post('/addwords/', async (req, res) => {
   console.log('Adding words');
   let wordpair = req.body;
   let pairVal = v.validate(wordpair, enfinSchema);
@@ -65,7 +89,7 @@ app.post('/addwords/', async (req, res) => {
 });
 
 //Remove a word pair from database
-app.delete('/deletewords/', async (req, res) => {
+admin.delete('/deletewords/', async (req, res) => {
   console.log('Deleting word');
   let delWord = req.body;
   let delVal = v.validate(delWord, enfinDelete);
@@ -86,7 +110,7 @@ app.delete('/deletewords/', async (req, res) => {
 });
 
 //Make an update to a word of a word pair
-app.put('/updatewords/', async (req, res) => {
+admin.put('/updatewords/', async (req, res) => {
   console.log('Updating word');
   let wordUpdate = req.body;
   let updateVal = v.validate(wordUpdate, updateSchema);
@@ -109,4 +133,4 @@ app.put('/updatewords/', async (req, res) => {
   }
 });
 
-*/
+module.exports = admin;

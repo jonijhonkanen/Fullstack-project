@@ -1,6 +1,3 @@
-//const express = require('express');
-//const router = express.Router();
-
 //Mysql
 const mysql = require('mysql');
 
