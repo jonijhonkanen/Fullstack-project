@@ -65,7 +65,7 @@ function StudentView() {
     console.log('Retrieving...');
     try {
       setIsPending(true);
-      fetch('/student/all')
+      fetch('/studentop/all')
         .then((res) => {
           return res.json();
         })

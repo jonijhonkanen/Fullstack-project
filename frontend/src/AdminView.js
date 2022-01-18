@@ -30,7 +30,7 @@ function AdminView() {
   async function fetchAll() {
     try {
       setIsPending(true);
-      let hr = await fetch('/all');
+      let hr = await fetch('/adminop/all');
       let data = await hr.json();
       //Test if query works
       console.log(data);
@@ -47,7 +47,7 @@ function AdminView() {
     //console.log(newWords);
 
     setIsPending(true);
-    fetch(`/addwords/`, {
+    fetch(`/adminop/addwords/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -92,7 +92,7 @@ function AdminView() {
     };
 
     setIsPending(true);
-    fetch(`/deletewords/`, {
+    fetch(`/adminop/deletewords/`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
@@ -125,7 +125,7 @@ function AdminView() {
     };
 
     setIsPending(true);
-    fetch(`/updatewords/`, {
+    fetch(`/adminop/updatewords/`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
