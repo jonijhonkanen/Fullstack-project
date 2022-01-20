@@ -19,6 +19,7 @@ function findAll() {
     pool.getConnection((error, connection) => {
       if (error) {
         reject(error);
+        return;
       }
       connection.query('SELECT * FROM en_fin', (err, results) => {
         if (err) {
