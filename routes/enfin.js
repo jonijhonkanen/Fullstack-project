@@ -16,7 +16,10 @@ var pool = mysql.createPool({
 //Send all word pairs from database (mainly for debug purposes)
 function findAll() {
   return new Promise((resolve, reject) => {
-    pool.getConnection((err, connection) => {
+    pool.getConnection((error, connection) => {
+      if (error) {
+        reject(error);
+      }
       connection.query('SELECT * FROM en_fin', (err, results) => {
         if (err) {
           reject(err);
@@ -33,7 +36,10 @@ function findAll() {
 function save(wordpair) {
   return new Promise((resolve, reject) => {
     //Add new body to database
-    pool.getConnection((err, connection) => {
+    pool.getConnection((error, connection) => {
+      if (error) {
+        reject(error);
+      }
       connection.query('INSERT INTO en_fin SET ?', wordpair, (err) => {
         if (err) {
           reject(err);
@@ -52,7 +58,10 @@ function deleteWords(word) {
     //console.log(word.english);
     let engWord = word.english;
     //Delete from database
-    pool.getConnection((err, connection) => {
+    pool.getConnection((error, connection) => {
+      if (error) {
+        reject(error);
+      }
       connection.query(
         'DELETE FROM en_fin WHERE english = ' + pool.escape(engWord),
         (err) => {
@@ -86,7 +95,10 @@ function updateWords(update) {
     sql = mysql.format(sql, inserts);
 
     //Update in database
-    pool.getConnection((err, connection) => {
+    pool.getConnection((error, connection) => {
+      if (error) {
+        reject(error);
+      }
       connection.query(sql, [language, original, updateTo], (err) => {
         if (err) {
           reject(err);
