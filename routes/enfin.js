@@ -4,14 +4,17 @@ const mysql = require('mysql');
 //Credentials
 require('dotenv').config();
 
-//Connection credentials
-var pool = mysql.createPool({
+//Pool config
+let config = {
+  host: 'mydb.tamk.fi',
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
   connectionLimit: 10,
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DB,
-});
+};
+
+//Connection credentials
+var pool = mysql.createPool(config);
 
 //Send all word pairs from database (mainly for debug purposes)
 function findAll() {
