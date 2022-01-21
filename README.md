@@ -49,16 +49,11 @@ Student:
 
 ### Installation
 
-NOTE!
-This app would require credentials for TAMK database.
-Therefore its usage might be impossible for others than developers at the moment.
+You can try the application at Heroku:
 
-Basic instructions:
+https://fullstack-honkanen.herokuapp.com/
 
-- Copy files into a wanted location.
-- run npm install to acquire required modules.
-- use node index.js to run backend.
-- use localhost:8080 on browser url to view the app.
+Note! Loading might take few seconds.
 
 ### Link to Screencast
 
