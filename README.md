@@ -51,6 +51,7 @@ Student:
 
 You can try the application at Heroku:
 
+NO LONGER FUNCTIONS!!!
 https://fullstack-honkanen.herokuapp.com/
 
 Note! Loading might take few seconds.
