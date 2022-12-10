@@ -49,13 +49,26 @@ Student:
 
 ### Installation
 
-You can try the application at Heroku:
-
-NO LONGER FUNCTIONS!!!
+Heroku app no longer functions, previously hosted at:
 https://fullstack-honkanen.herokuapp.com/
+
+NOTE!!!
+Current testing requires env file for data base access!!!
+
+Test environment can be established by cloning the repo (requires git installation):
+
+- Go to a folder location you want to place the git repo project files with a command line tool
+- Use following: git clone https://github.com/jonijhonkanen/Fullstack-project.git
+- Repo files should now be downloading
+- Go to Fullstack-project - folder (code editor recommended, Visual Studio Code used for this example)
+- Install modules with npm install
+- Add env file with correct key-value pairs (not included in repo)
+- Run the app with command: node index.js (Listening on port 8080 or similar should appear on console)
+- Open in your browser with url: localhost:8080 (or with different port number if given)
+- You should now be able to view the Admin view of the app in your browser
 
 Note! Loading might take few seconds.
 
-### Link to Screencast
+### Link to Screencast (in Finnish)
 
 https://youtu.be/Ra5GvH9zNA0
